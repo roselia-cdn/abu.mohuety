@@ -59,12 +59,9 @@ inm.reset = function(){
 $&&$(function(){
     $(".button-collapse").sideNav();
     $('.parallax').parallax();
-    inm.resizer();
-    $(window).resize(inm.resizer);
     new Vue({
         el: "#main", data: {
             inm
         }
     })
 });
-//inm.cal("19260817", "114514")
