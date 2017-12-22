@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>机 器 证 明（迫真）</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<body class="blue-grey darken-4">
+<nav class="sp-color" id="mobile-nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="mobile-list" class="button-collapse"><i class="material-icons">menu</i> </a>
+        <div class="container">
+            <a href="#" class="brand-logo">机 器 证 明（迫真）</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            </ul>
+            <ul class="side-nav" id="mobile-list">
+                <li><div class="userView">
+                    <div class="container">
+                        <div class="background sp-color">
+                        </div>
+                        <img class="circle" src="static/img/810.jpg">
+                        <span class="white-text name">野兽先辈</span>
+                    </div>
+
+                </div> </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="parallax-container white-text" id="main-title">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <br><br>
+            <h1 class="header center red-text">迫 真 计 算 器</h1>
+            <div class="row center">
+                <h5 class="header col s12">为各给野兽学家提供数字证明的利器</h5>
+            </div>
+            <br><br>
+            <div class="center">
+                <a onclick="$('html, body').animate({scrollTop: $('#intro').offset().top}, 800, 'swing'); " href="#intro" class="sp-color btn waves-effect waves-light">查看说明</a>
+                <a id="begin" onclick="$('html, body').animate({scrollTop: $('#prove').fadeIn().offset().top}, 800, 'swing'); " href="#prove" class="sp-color btn waves-effect waves-light pulse">提出假说（暴论）</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container" style="display: none;" id="prove">
+    <div class="row">
+        <h2 class="sp-text">要证：</h2>
+        <div class="container row white-text">
+            <div class="input-field col s4">
+                <input id="left" type="number" class="validate" min="0" required="required">
+                <label for="left">风 评 被 害 者</label>
+            </div>
+            <div class="col s1"><h3>==</h3></div>
+            <div class="input-field col s4">
+                <input id="right" type="number" class="validate" min="0" value="114514" required="required">
+                <label for="right">いいよ、来いよ</label>
+            </div>
+            <button class="btn-large sp-color waves-effect waves-light" onclick="inm.startProve()">完 全 证 明</button>
+            
+        </div>
+        <div id="main">
+            <div v-if="inm.started" class="row">
+                <button class="btn-large sp-color waves-effect waves-light" onclick="inm.reset()">立即消失，请</button>
+                <h3 class="sp-text">下面开始证明：</h3>
+                <h4 class="sp-text" v-if="inm.can">共有{{ inm.can }}种证明方法。</h4>
+                <div v-for="(res, idx) in inm.results" class="col link-card" v-bind:id="`res-${idx}`">
+                    <div class="card-pannel hoverable" onclick="inm.selectText(this)">
+                        <div class="card-content">
+                            <h5 class="sp-text">{{ res }}</h5>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="intro" class="parallax-container black-text">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <br><br>
+            <h1 class="header center sp-text">说明：</h1>
+            <div class="row center flow-text white-text">
+                <h3 class="sp-text">是不是找到了野兽先辈的新说，却难以做出数字证明？那么迫真计算器将是你的不二之选。</h3>
+                <p>输入需要的数字（将忽视字母，留空视为0），这里将计算出所有的可能性，考虑到复杂性，目前只能添加+或-符号（小并感）</p>
+                <p>数字将在本地运算，计算复杂度很大（卡顿注意），如果输入过长的数字可能会爆破你的计算机（确信），点击结果即可选择，然后复制</p>
+                
+            </div>
+            <div class="row flow-text white-text">
+                <h4 class="sp-text">例：</h4>
+                <p>要证： 野兽先辈__说（正论）</p>
+                <p>等价于证明：BigPrime(19260817)==114514</p>
+                <button class="btn-large sp-color waves-effect waves-light" onclick="inm.startExample()">查看样例</button>
+                <button class="btn-large sp-color waves-effect waves-light" onclick="$('html, body').animate({scrollTop: 0}, 800, 'swing')">返回</button>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</div>
+
+<footer class="page-footer sp-color">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">迫 真 计 算 器</h5>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            &copy;<script>document.write((new Date()).getFullYear());</script>
+            Designed by Somainer, All Rights Reserved
+        </div>
+    </div>
+</footer>
+
+
+<script defer src="static/js/jquery-3.2.1.min.js"></script>
+<script defer src="static/js/materialize.min.js"></script>
+<script defer src="static/js/vue.min.js"></script>
+<link href="static/css/materialize.min.css" type="text/css" rel="stylesheet">
+<link href="static/css/material_icons.css" type="text/css" rel="stylesheet">
+<link href="static/css/inm.css" type="text/css" rel="stylesheet">
+<script defer src="static/js/inm.js"></script>
+<script>
+
+</script>
+</body>
+</html>
