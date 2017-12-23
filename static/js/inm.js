@@ -2,10 +2,8 @@
 window.inm={
     results: [], can:false, started: false
 };
-inm.rend=function (l,o){
-    const s = l.map((v, k) => `${o[k]}${v}`).join('');
-    return s.substring((s.charAt(0)==='+')+0);
-}
+inm.rend=(l,o) => l.map((v, k) => `${o[k]}${v}`).join('').substring((o.charAt(0)==='+')+0);
+
 inm.prove=function(l,r,report,pl,pr,opl,opr,vl,vr){
     pl=pl||0;pr=pr||0;opl=opl||"";opr=opr||"";vl=vl||0;vr=vr||0;
     if(l.length === pl && r.length === pr)
@@ -18,9 +16,7 @@ inm.prove=function(l,r,report,pl,pr,opl,opr,vl,vr){
 inm.digest = s => [].map.call(s, x => parseInt(x)).filter(x=>x>=0);
 inm.cal=function(sl, sr){
     this.results = [];this.can=false;
-    sl=this.digest(sl);
-    sr=this.digest(sr);
-    let c = this.prove(sl.length?sl:[0], sr.length?sr:[0], r => inm.results.push(r));
+    let c = this.prove(...[sl,sr].map(this.digest).map(x => x.length?x:[0]), r => inm.results.push(r));
     this.can=c;
 }
 inm.selectText = function(text){
@@ -59,8 +55,7 @@ inm.reset = function(){
 $&&$(function(){
     $(".button-collapse").sideNav();
     $('.parallax').parallax();
-    inm.resizer();
-    $(window).resize(inm.resizer);
+    $(window).resize(inm.resizer(),inm.resizer);
     new Vue({
         el: "#main", data: {
             inm
