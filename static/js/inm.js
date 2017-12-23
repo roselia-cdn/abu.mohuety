@@ -33,7 +33,6 @@ inm.selectText = function(text){
     }
 }
 inm.resizer = function () {
-    //document.getElementsByClassName('parallax-container')[0].style.minHeight = window.innerHeight - document.getElementById('mobile-nav').style.height + "px";
     $('.parallax-container').css({minHeight: (window.innerHeight - $('#mobile-nav').height()) + "px"});
     $('.parall-pic').css({width: window.innerWidth});
 };

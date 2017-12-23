@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SPFans</title>
+</head>
+<body class="blue-grey darken-4">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<nav class="sp-color" id="mobile-nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="mobile-list" class="button-collapse"><i class="material-icons">menu</i> </a>
+        <div class="container">
+            <a href="#" class="brand-logo">WSP Fans</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#" onclick="wsp.randomColorChange()">换一个原谅色</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-list">
+                <li><div class="userView">
+                    <div class="container">
+                        <div class="background sp-color">
+                        </div>
+                        <img class="circle" src="static/img/sato.jpg">
+                        <span class="white-text name">SP-Fans</span>
+                    </div>
+
+                </div> </li>
+                <li><a href="#" onclick="wsp.randomColorChange()">换一个原谅色</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="parallax-container white-text" id="main-title">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <br><br>
+            <h1 class="header center sp-text">SP Fans</h1>
+            <div class="row center">
+                <h5 class="header col s12">王绅朴全球粉丝应援会</h5>
+            </div>
+            <br><br>
+            <div class="center">
+                <a id="give-up" onclick="wsp.answered === wsp.total?wsp.addQuest()||Materialize.toast('住口！无耻老贼！') :$('#join').fadeOut()" href="#" class="sp-color btn waves-effect">一派胡言！</a>
+                <a onclick="$('html, body').animate({scrollTop: $('#join').fadeIn().offset().top}, 800, 'swing'); " href="#join" class="sp-color btn waves-effect waves-light pulse">Excited!</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="parallax" id="main-pic"><img class="parall-pic" src="static/img/horsecloud2.png"> </div>
+</div>
+<div class="container" style="display: none;" id="join">
+    <div class="row">
+        <h2 class="sp-text">您是否是<strong>他</strong>的粉丝？</h2>
+        <div id="quests" class="row">
+            <div v-if="wsp.answered < wsp.total">
+                <h3 class="sp-text">下列问题，如果您都回答正确，那么您就是真正的粉丝：</h3>
+                <div v-for="quest in quests" class="col link-card" v-bind:id="`quest-${quest.id}`">
+                    <div class="card hoverable">
+                        <div class="card-content">
+                            <span class="card-title">{{ quest.question }}</span>
+                        </div>
+                        <div class="card-action">
+                            <button v-for="(opt, idx) in quest.options" v-bind:onclick="`wsp.answer(${quest.fid}, ${idx})`" class="sp-color btn waves-effect">{{ opt }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div v-if="wsp.answered === wsp.total">
+                <div v-if="wsp.total - wsp.correct < 3">
+                    <h4 v-if="wsp.correct === wsp.total" class="sp-text">是的，阁下正是真正的粉丝。</h4>
+                    <h4 v-else class="sp-text">您是个粉丝，但是功力尚浅，只有{{(100*wsp.correct/wsp.total).toFixed(2)}}%。马上加入后宫提高姿势水平吧！</h4>
+                    <a onclick="wsp.setHref()" href="#" target="_blank" id="tg-btn" class="sp-color btn waves-effect">现在就加入王绅朴的后宫！</a>
+                </div>
+                <div v-else>
+                    <h4 class="sp-text">住口！你根本不是粉丝！</h4>
+                </div>
+            </div>
+            <div v-else class="row">
+                <div class="col">
+                    <a href="#main-title" onclick="$('#join').fadeOut();$('html, body').animate({scrollTop: 0}, 600, 'swing');" class="pink accent-4 btn waves-effect waves-red right">看来我不是</a>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<div class="parallax-container black-text">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <br><br>
+            <h1 class="header center sp-text">周边</h1>
+            <div class="row center">
+                <h3 class="sp-text">我们要出主题文化衫了，你们唆资不资瓷啊？</h3>
+                <a href="javascript:void(0)" class="btn sp-color waves-effect disagree">Naive</a>
+                <a href="javascript:void(0)" onclick="$('.disagree').fadeOut();$('#mail-me').fadeIn();" class="btn sp-color waves-effect">吼啊，资瓷！</a>
+                <div id="mail-me" style="display: none;">
+                    <h2 class="sp-text">Excited!</h2>
+                    <p class="flow-text">如果你感到excited，这是坠吼的，但是啊，如果你大胆的想法，就发邮件过来传授人生的经验。</p>
+                    <h5 id="mail" class="sp-text">spfans@roselia.moe</h5>
+                    <a href="mailto:spfans@roselia.moe" class="btn sp-color waves-effect pulse">现在就传授人生经验</a>
+                </div>
+            </div>
+            <br><br>
+        </div>
+    </div>
+    <div class="parallax" id="main-pic2"><img class="parall-pic" src="static/img/HueHorse.png"> </div>
+</div>
+
+<footer class="page-footer sp-color">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">WSP Fans</h5>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            &copy;<script>document.write((new Date()).getFullYear());</script>
+            Designed by Somainer, All Rights Reserved
+        </div>
+    </div>
+</footer>
+
+
+<script src="static/js/jquery-3.2.1.min.js"></script>
+<script src="static/js/materialize.min.js"></script>
+<script src="static/js/vue.min.js"></script>
+<link href="static/css/materialize.min.css" type="text/css" rel="stylesheet">
+<link href="static/css/material_icons.css" type="text/css" rel="stylesheet">
+<link href="static/css/spf.css" type="text/css" rel="stylesheet">
+<script src="static/js/spf.js"></script>
+<script>
+
+</script>
+</body>
+</html>
