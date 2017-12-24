@@ -3,22 +3,22 @@ window.inm={
     results: [], can:false, started: false
 };
 inm.rend=(l,o) => l.map((v, k) => `${o[k]}${v}`).join('').substring((o.charAt(0)==='+')+0);
-
-inm.prove=function(l,r,report,pl,pr,opl,opr,vl,vr){
-    pl=pl||0;pr=pr||0;opl=opl||"";opr=opr||"";vl=vl||0;vr=vr||0;
-    if(l.length === pl && r.length === pr)
-        return vl===vr?(report && report(`${this.rend(l, opl)} == ${this.rend(r, opr)}`),1):0;
-    return pl<l.length?(
-	    this.prove(r, l, report, pr, pl+1, opr, opl+"+", vr, vl+l[pl])+
-	    this.prove(r, l, report, pr, pl+1, opr, opl+"-", vr, vl-l[pl])):
-	    this.prove(r,l, report, pr, pl, opr, opl, vr, vl);
-}
 inm.digest = s => [].map.call(s, x => parseInt(x)).filter(x=>x>=0);
-inm.cal=function(sl, sr){
-    this.results = [];this.can=false;
-    let c = this.prove(...[sl,sr].map(this.digest).map(x => x.length?x:[0]), r => inm.results.push(r));
-    this.can=c;
+inm.split=l=>{
+    let res=new Map(), opec="+-";
+    for(let p=0;p<(1<<l.length);p++){
+        const acc = l.reduce((x, v, i)=>x+v*(((p>>i)&1)?-1:1), 0),
+            ops = l.reduce((x,_v,i)=>x+opec.charAt((p>>i)&1), "")
+        if(!res.has(acc)) res.set(acc, []);
+        res.get(acc).push(inm.rend(l, ops));
+    }
+    return res;
 }
+inm.calculate = function(sl, sr) {
+    this.results = [];this.can=0;
+    this.dpProve(...[sl, sr].map(this.digest).map(x => x.length?x:[0]).map(this.split))
+}
+inm.dpProve = (l, r) => l.forEach((val,k)=>r.has(k)&&val.forEach(v => r.get(k).forEach(x=>{++inm.can; inm.results.push(`${v} == ${x}`)})))
 inm.selectText = function(text){
     if (document.body.createTextRange) {
         let range = document.body.createTextRange();
@@ -38,9 +38,8 @@ inm.resizer = function () {
 };
 inm.startProve = function(){
     inm.started=true;
-    inm.cal($("#left").val(), $("#right").val())
+    inm.calculate($("#left").val(), $("#right").val())
     inm.results.push(inm.can?"Q.E.D.":"ん？")
-    
 }
 inm.startExample = function(){
     $("#begin").click()
