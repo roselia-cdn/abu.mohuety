@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>机 器 证 明（迫真）</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="/static/css/materialize.min.css" type="text/css" rel="stylesheet">
+    <link href="/static/css/material_icons.css" type="text/css" rel="stylesheet">
+    <link href="/static/css/inm.css" type="text/css" rel="stylesheet">
 </head>
 <body class="blue-grey darken-4">
 <nav class="sp-color" id="mobile-nav">
@@ -44,17 +47,22 @@
         </div>
     </div>
 </div>
+<div class="fixed-action-btn gotop">
+    <a class="btn-floating btn-large sp-color waves-effect waves-light" onclick="$('html,body').animate({scrollTop: 0})">
+      こ↑こ
+    </a>
+</div>
 <div class="container" style="display: none;" id="prove">
     <div class="row">
         <h2 class="sp-text">要证：</h2>
         <div class="container row white-text">
             <div class="input-field col s4">
-                <input id="left" type="number" class="validate" min="0" required="required">
+                <input id="left" type="number" v-model="inm.eqL" @keyup.enter="inm.eqL && inm.startProve()" class="validate" min="0" required="required">
                 <label for="left">风 评 被 害 者</label>
             </div>
             <div class="col s1"><h3>==</h3></div>
             <div class="input-field col s4">
-                <input id="right" type="number" class="validate" min="0" value="114514" required="required">
+                <input id="right" type="number" v-model="inm.eqR" @keyup.enter="inm.eqR && inm.startProve()" class="validate" min="0" required="required">
                 <label for="right">いいよ、来いよ</label>
             </div>
             <button class="btn-large sp-color waves-effect waves-light" onclick="inm.startProve()">完 全 证 明</button>
@@ -93,7 +101,7 @@
             <div class="row flow-text white-text">
                 <h4 class="sp-text">例：</h4>
                 <p>要证： 野兽先辈__说（正论）</p>
-                <p>等价于证明：BigPrime(19260817)==114514</p>
+                <p>等价于证明：BigPrime==114514</p>
                 <button class="btn-large sp-color waves-effect waves-light" onclick="inm.startExample()">查看样例</button>
                 <button class="btn-large sp-color waves-effect waves-light" onclick="$('html, body').animate({scrollTop: 0}, 800, 'swing')">返回</button>
             </div>
@@ -129,9 +137,6 @@
 <script defer src="/static/js/jquery-3.2.1.min.js"></script>
 <script defer src="/static/js/materialize.min.js"></script>
 <script defer src="/static/js/vue.min.js"></script>
-<link href="/static/css/materialize.min.css" type="text/css" rel="stylesheet">
-<link href="/static/css/material_icons.css" type="text/css" rel="stylesheet">
-<link href="/static/css/inm.css" type="text/css" rel="stylesheet">
 <script defer src="/static/js/inm.js"></script>
 <script>
 
