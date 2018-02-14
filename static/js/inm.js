@@ -52,7 +52,7 @@ inm.forceProve = function(l, r, m){
     if(l.l){
         r=l.r;l=l.l;
     }
-    [this.eqL, this.eqR, this.eqLim] = [l, r, m];
+    this.eqL = l;this.eqR=r;this.eqLim=m;
     Materialize.updateTextFields();
     if(m==0) return this.zeroModal();
     this.timedProve(l, r);
