@@ -56,7 +56,7 @@ inm.forceProve = function(l, r, m){
     Materialize.updateTextFields();
     if(m==0) return this.zeroModal();
     this.timedProve(l, r);
-}
+};
 inm.timedProve = function(sl, sr){
     inm.started=true;
     console.time("Algorithm Time");
