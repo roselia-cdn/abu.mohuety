@@ -7,3 +7,7 @@
 code{
     font-family: Consolas, "Courier New", monospace;
 }
+::selection{
+    color: #b71c1c;
+    background-color: #2962ff;
+}
