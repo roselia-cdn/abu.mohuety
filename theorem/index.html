@@ -65,7 +65,18 @@
                 <input id="right" type="number" v-model="inm.eqR" @keyup.enter="inm.eqR && inm.startProve()" class="validate" min="0" required="required">
                 <label for="right">いいよ、来いよ</label>
             </div>
-            <div class="input-field col s4">
+            <div class="col s4">
+                <label>红茶什么的有在喝吗</label>
+                <div class="switch">
+                    <label>
+                        我超逊的
+                        <input type="checkbox" id="brief" class="validate" v-model="inm.showAll">
+                        <span class="lever"></span>
+                        开玩笑，我超勇的
+                    </label>
+                </div>
+            </div>
+            <div class="input-field col s4" v-show="inm.showAll">
                 <input id="limit" type="number" v-model="inm.eqLim" class="validate" min="0" required="required">
                 <label for="right">想喝几杯红茶？</label>
             </div>
@@ -88,6 +99,7 @@
                 <button class="btn-large sp-color waves-effect waves-light" onclick="inm.reset()">立即消失，请</button>
                 <h3 class="sp-text">下面开始证明：</h3>
                 <h4 class="sp-text" v-if="inm.can">共有{{ inm.can }}种证明方法。</h4>
+                <h4 class="sp-text" v-if="inm.can && !inm.showAll">现在简要地显示其中的{{ inm.results.length - 1 }}种。</h4>
                 <div v-for="(res, idx) in inm.results" class="col link-card" v-bind:id="`res-${idx}`">
                     <div class="card-pannel hoverable" onclick="inm.selectText(this)">
                         <div class="card-content">
@@ -111,6 +123,7 @@
                 <h3 class="sp-text">是不是找到了野兽先辈的新说，却难以做出数字证明？那么迫真计算器将是你的不二之选。</h3>
                 <p>输入需要的数字（将忽视字母，留空视为0），再确认限制数量（0为不做限制），这里将计算出部分可能性（想喝几杯红茶），算式可以是四则运算和括号。</p>
                 <p>数字将在本地运算，计算复杂度很大（卡顿注意），如果输入过长的数字可能会爆破你的计算机（确信），点击结果即可选择，然后复制</p>
+                <p>希望得到精确的分数形式？希望得到超快的计算速度？请移步<a href="https://github.com/Somainer/Inmu-Prove" target="_blank">迫真计算器C++版</a>。</p>
             </div>
             <br><br>
             <div class="row flow-text white-text">
@@ -153,7 +166,7 @@
 <script defer src="/static/js/materialize.min.js"></script>
 <script defer src="/static/js/vue.min.js"></script>
 <script defer src="/static/js/inm-algo.js"></script>
-<script defer src="/static/js/inm.js"></script>
+<script defer src="/static/js/inm.js?v=3"></script>
 <script>
 
 </script>
